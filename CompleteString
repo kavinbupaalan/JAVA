@@ -1,0 +1,30 @@
+public class CompleteString {
+    public static void main(String[] args) {
+        String str = "The quick brown fox jumps over the lazy dog"; 
+        
+        String lowerCaseStr = str.toLowerCase();
+        
+        boolean[] alphabet = new boolean[26]; 
+        
+        for (int i = 0; i < lowerCaseStr.length(); i++) {
+            char ch = lowerCaseStr.charAt(i);
+            if (ch >= 'a' && ch <= 'z') {
+                alphabet[ch - 'a'] = true;
+            }
+        }
+        
+        boolean isComplete = true;
+        for (boolean present : alphabet) {
+            if (!present) {
+                isComplete = false;
+                break;
+            }
+        }
+        
+        if (isComplete) {
+            System.out.println("Complete string");
+        } else {
+            System.out.println("Not complete string");
+        }
+    }
+}

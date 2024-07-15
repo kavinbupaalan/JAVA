@@ -1,0 +1,18 @@
+public class SquarePattern {
+    public static void main(String[] args) {
+        int size = 7; 
+        int[][] pattern = new int[size][size];
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                int layer = Math.min(Math.min(i, j), Math.min(size - 1 - i, size - 1 - j));
+                pattern[i][j] = size - layer;
+            }
+        }
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                System.out.print(pattern[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}

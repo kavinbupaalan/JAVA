@@ -1,0 +1,14 @@
+public class FirstCharOfWords {
+    public static void main(String[] args) {
+        String sentence = "Hello World of Java Programming";
+        printFirstChars(sentence);
+    }
+    public static void printFirstChars(String sentence) {
+        String[] words = sentence.split(" ");
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                System.out.println(word.charAt(0));
+            }
+        }
+    }
+}

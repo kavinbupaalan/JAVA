@@ -1,0 +1,21 @@
+import java.util.Scanner;
+public class EvenLengthWords {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a sentence: ");
+        String sentence = scanner.nextLine();
+        String[] words = sentence.split("\\s+"); 
+        System.out.println("Length of each word:");
+        for (String word : words) {
+            int length = word.length();
+            System.out.println(word + ": " + length);
+        }
+        System.out.println("\nEven length words:");
+        for (String word : words) {
+            if (word.length() % 2 == 0 && !word.isEmpty()) {  
+                System.out.println(word + ": " + word.length());
+            }
+        }
+        scanner.close();
+    }
+}

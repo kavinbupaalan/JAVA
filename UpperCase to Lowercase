@@ -1,0 +1,29 @@
+import java.util.Scanner;
+public class StringManipulation {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a string: ");
+        String input = scanner.nextLine();
+        scanner.close();
+        StringBuilder convertedString = new StringBuilder();
+        int upperCaseCount = 0;
+        int lowerCaseCount = 0;
+        int specialCharCount = 0;
+        for (char c : input.toCharArray()) {
+            if (Character.isUpperCase(c)) {
+                convertedString.append(Character.toLowerCase(c));
+                upperCaseCount++;
+            } else if (Character.isLowerCase(c)) {
+                convertedString.append(Character.toUpperCase(c));
+                lowerCaseCount++;
+            } else {
+                convertedString.append(c);
+                specialCharCount++;
+            }
+        }
+        System.out.println("Converted string: " + convertedString.toString());
+        System.out.println("Uppercase count: " + upperCaseCount);
+        System.out.println("Lowercase count: " + lowerCaseCount);
+        System.out.println("Special character count: " + specialCharCount);
+    }
+}

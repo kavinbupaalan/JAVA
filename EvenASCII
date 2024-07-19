@@ -1,0 +1,16 @@
+import java.util.Scanner;
+public class EvenAsciiChars {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a string:");
+        String input = scanner.nextLine();
+        scanner.close();
+        System.out.println("Characters with even ASCII values:");
+        for (char ch : input.toCharArray()) {
+            int asciiValue = (int) ch;
+            if (asciiValue % 2 == 0) {
+                System.out.print(ch + " ");
+            }
+        }
+    }
+}

@@ -1,0 +1,41 @@
+CREATE TABLE Employee (
+    name VARCHAR(50),
+    id INT PRIMARY KEY,
+    address VARCHAR(100),
+    designation VARCHAR(50),
+    emergency_number VARCHAR(15),
+    phone_number VARCHAR(15),
+    department VARCHAR(50)
+);
+
+CREATE TABLE EmployeeSalary (
+    id INT PRIMARY KEY,
+    HRA DECIMAL(10, 2),
+    DA DECIMAL(10, 2),
+    TA DECIMAL(10, 2),
+    basic_pay DECIMAL(10, 2),
+    total_salary DECIMAL(10, 2),
+    department VARCHAR(50),
+    FOREIGN KEY (id) REFERENCES Employee(id)
+);
+INSERT INTO Employee (name, id, address, designation, emergency_number, phone_number, department) VALUES
+('John Doe', 1, '123 Main St', 'Manager', '1234567890', '0987654321', 'HR'),
+('Jane Smith', 2, '456 Elm St', 'Engineer', '2345678901', '1987654321', 'Engineering'),
+('Alice Johnson', 3, '789 Maple St', 'Technician', '3456789012', '2987654321', 'Maintenance');
+
+INSERT INTO EmployeeSalary (id, HRA, DA, TA, basic_pay, total_salary, department) VALUES
+(1, 5000.00, 2000.00, 1000.00, 30000.00, 38000.00, 'HR'),
+(2, 6000.00, 2500.00, 1500.00, 35000.00, 45000.00, 'Engineering'),
+(3, 4000.00, 1800.00, 900.00, 25000.00, 31700.00, 'Maintenance');
+SELECT e.name, e.department, es.total_salary
+FROM Employee e
+JOIN EmployeeSalary es ON e.id = es.id
+ORDER BY es.total_salary DESC;
+SELECT e.department, e.name, es.total_salary
+FROM Employee e
+JOIN EmployeeSalary es ON e.id = es.id
+WHERE es.total_salary = (
+    SELECT MAX(es2.total_salary)
+    FROM EmployeeSalary es2
+    WHERE es2.department = e.department
+);

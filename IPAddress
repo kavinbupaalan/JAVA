@@ -1,0 +1,42 @@
+import java.util.Scanner;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+public class IPAddressValidator {
+    private static final String IP_ADDRESS_PATTERN =
+            "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$";
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter an IP address: ");
+        String ipAddress = scanner.nextLine();
+        if (isValidIPAddress(ipAddress)) {
+            System.out.println("Valid IP address");
+            System.out.println("IP address class: " + getIPAddressClass(ipAddress));
+        } else {
+            System.out.println("Invalid IP address");
+        }
+        scanner.close();
+    }
+    private static boolean isValidIPAddress(String ip) {
+        Pattern pattern = Pattern.compile(IP_ADDRESS_PATTERN);
+        Matcher matcher = pattern.matcher(ip);
+        return matcher.matches();
+    }
+    private static String getIPAddressClass(String ip) {
+        String[] parts = ip.split("\\.");
+        int firstOctet = Integer.parseInt(parts[0]);
+
+        if (firstOctet >= 1 && firstOctet <= 126) {
+            return "A";
+        } else if (firstOctet >= 128 && firstOctet <= 191) {
+            return "B";
+        } else if (firstOctet >= 192 && firstOctet <= 223) {
+            return "C";
+        } else if (firstOctet >= 224 && firstOctet <= 239) {
+            return "D";
+        } else if (firstOctet >= 240 && firstOctet <= 255) {
+            return "E";
+        } else {
+            return "Unknown";
+        }
+    }
+}
